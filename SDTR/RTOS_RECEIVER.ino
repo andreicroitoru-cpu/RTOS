@@ -22,8 +22,7 @@ struct package
 };
 
 struct package package;
-void setup() {
-  
+void setup() { 
    Serial.begin(9600);
    xTaskCreate(Task_Reception, "Task1",100, NULL,1, &Task_Handle1);
    xTaskCreate(Task_Display, "Task2",100, NULL,1, &Task_Handle2);
@@ -78,10 +77,8 @@ void Task_Buzzer(void *param)
         PORTD = 0b00000100;
         lcd.clear();
         lcd.setCursor(0,1);
-        lcd.print("URGENTA");
-        
+        lcd.print("URGENTA");     
       }
-    
       xSemaphoreGive(xCountingSemaphore);
       vTaskDelay(1000/portTICK_PERIOD_MS); 
     }  
@@ -91,7 +88,6 @@ void Task_Display(void *param)
   (void) param;
   lcd.init();                      
   lcd.backlight();
- 
   while(1)
   {
     xSemaphoreTake(xCountingSemaphore, portMAX_DELAY);
