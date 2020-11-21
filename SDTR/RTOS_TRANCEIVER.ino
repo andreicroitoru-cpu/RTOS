@@ -43,7 +43,7 @@ void Task_ValADC(void *param)
   xSemaphoreTake(xCountingSemaphore, portMAX_DELAY);
   Serial.println("Temperatura");
   float stepADC=0.0048828125;
- DIDR0=(1<<ADC5D) | (0<<ADC4D) | (0<<ADC3D) | (0<<ADC2D) | (1<<ADC1D) | (0<<ADC0D);
+  DIDR0=(1<<ADC5D) | (0<<ADC4D) | (0<<ADC3D) | (0<<ADC2D) | (1<<ADC1D) | (0<<ADC0D);
   ADMUX=ADC_VREF_TYPE;
   ADCSRA=(1<<ADEN) | (0<<ADSC) | (1<<ADATE) | (0<<ADIF) | (0<<ADIE) | (1<<ADPS2) | (0<<ADPS1) | (0<<ADPS0);        
   ADMUX= 0 | ADC_VREF_TYPE;
@@ -59,8 +59,7 @@ void Task_ValADC(void *param)
 }
 
 void Task_ButonEmergency(void *param)
-{
-  
+{  
   bool ButonState = 0;
   bool PreviousState = 0;
   bool BuzzerState = 0;
