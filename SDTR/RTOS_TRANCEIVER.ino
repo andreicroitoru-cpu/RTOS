@@ -111,7 +111,7 @@ void Task_Pulse_sensor(void *param)
 void Task_Transmission(void *param)
 {
   (void) param;
-  RF24 radio(9, 10); // CE, CSN         
+  RF24 radio(9, 10);        
   const byte address[6] = "00002";
   radio.begin();                  
   radio.openWritingPipe(address); 
