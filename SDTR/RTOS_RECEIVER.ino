@@ -25,9 +25,9 @@ struct package package;
 void setup() {
   
    Serial.begin(9600);
-   xTaskCreate(Task_Reception, "Task1",100, NULL,2, &Task_Handle1);
+   xTaskCreate(Task_Reception, "Task1",100, NULL,1, &Task_Handle1);
    xTaskCreate(Task_Display, "Task2",100, NULL,1, &Task_Handle2);
-   xTaskCreate(Task_Buzzer, "Task3",100, NULL,3, &Task_Handle3);
+   xTaskCreate(Task_Buzzer, "Task3",100, NULL,1, &Task_Handle3);
    xCountingSemaphore = xSemaphoreCreateCounting(2,0);
    xSemaphoreGive(xCountingSemaphore);
 }
