@@ -56,14 +56,12 @@ void Task_ValADC(void *param)
   {
     Serial.println("FAIL");    
     }
-  
   vTaskDelay(1000/portTICK_PERIOD_MS); 
  }
 }
 
 void Task_ButonEmergency(void *param)
 {
-  
   bool ButonState = 0;
   bool PreviousState = 0;
   bool BuzzerState = 0;
