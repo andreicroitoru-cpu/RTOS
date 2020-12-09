@@ -29,7 +29,7 @@ void setup()
   xTaskCreate(Task_ButonEmergency, "Task2",100, NULL,1, &Task_Handle2); 
   xTaskCreate(Task_Transmission, "Task3",100, NULL,2, &Task_Handle3); 
   xTaskCreate(Task_Pulse_sensor, "Task4",100, NULL,1, &Task_Handle4);
-  Global_Queue=xQueueCreate(25, sizeof(int));
+  Global_Queue=xQueueCreate(25, sizeof(package));
 }
 
 void loop() {}
