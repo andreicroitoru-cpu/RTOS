@@ -143,9 +143,6 @@ package_local package_local1;
     {
       if(xQueueReceive(Global_Queue,&package_local1,1000))
       {
-          Serial.println("Primit1");  
-          Serial.println(package_local1.temperature_local);  
-          Serial.println(package_local1.pulsesensor_local);  
           radio.write(&package_local1, sizeof(package_local));
       }
       else
