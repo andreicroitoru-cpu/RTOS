@@ -60,12 +60,10 @@ void Task_Buzzer(void *param)
   {
     if(buton == 0)
       {
-         vTaskResume(Task_Handle2);
          PORTD = 0b00000000;       
       }
       else
       {
-        vTaskSuspend(Task_Handle2);
         xSemaphoreTake(xMutex,portMAX_DELAY);
         PORTD = 0b00000100;
         lcd.clear();
