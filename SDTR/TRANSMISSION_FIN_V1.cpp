@@ -4,7 +4,7 @@
 #include <RF24.h>
 #include "semphr.h"
 #include "queue.h"
-void Task_ValADC(void *param);
+void Task_Temperature(void *param);
 void Task_ButonEmergency(void *param);
 void Task_Transmission(void *param);
 void Task_Pulse_sensor(void *param);
@@ -23,7 +23,7 @@ package package1;
 
 void setup() 
 {
-  xTaskCreate(Task_ValADC, "Task1",100, NULL,1, &Task_Handle1);
+  xTaskCreate(Task_Temperature, "Task1",100, NULL,1, &Task_Handle1);
   xTaskCreate(Task_ButonEmergency, "Task2",100, NULL,1, &Task_Handle2); 
   xTaskCreate(Task_Transmission, "Task3",100, NULL,2, &Task_Handle3); 
   xTaskCreate(Task_Pulse_sensor, "Task4",100, NULL,1, &Task_Handle4);
@@ -34,14 +34,14 @@ void setup()
 
 void loop() {}
 
-void Task_ValADC(void *param)
+void Temperature(void *param)
 {
  (void) param;
  float stepADC=0.0048828125;
  const ADC_VREF_TYPE ((0<<REFS1)|(0<<REFS0)|(0<<ADLAR));
  while(1)
  {   
-  DIDR0=(1<<ADC5D) | (0<<ADC4D) | (0<<ADC3D) | (0<<ADC2D) | (1<<ADC1D) | (0<<ADC0D);
+  DIDR0=(0<<ADC5D) | (0<<ADC4D) | (0<<ADC3D) | (0<<ADC2D) | (0<<ADC1D) | (1<<ADC0D);
   ADMUX=ADC_VREF_TYPE;
   ADCSRA=(1<<ADEN) | (0<<ADSC) | (1<<ADATE) | (0<<ADIF) | (0<<ADIE) | (1<<ADPS2) | (0<<ADPS1) | (0<<ADPS0);        
   ADMUX= 0 | ADC_VREF_TYPE;
@@ -101,7 +101,7 @@ void Task_Pulse_sensor(void *param)
  
  while(1)
  {    
-  DIDR0=(1<<ADC5D) | (0<<ADC4D) | (0<<ADC3D) | (0<<ADC2D) | (1<<ADC1D) | (0<<ADC0D);
+  DIDR0=(0<<ADC5D) | (0<<ADC4D) | (0<<ADC3D) | (0<<ADC2D) | (1<<ADC1D) | (0<<ADC0D);
   ADMUX=ADC_VREF_TYPE;
   ADCSRA=(1<<ADEN) | (0<<ADSC) | (1<<ADATE) | (0<<ADIF) | (0<<ADIE) | (1<<ADPS2) | (0<<ADPS1) | (0<<ADPS0);        
   ADMUX= 1 | ADC_VREF_TYPE;
