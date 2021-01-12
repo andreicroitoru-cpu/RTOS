@@ -27,7 +27,7 @@ void setup()
   xTaskCreate(Task_ButonEmergency, "Task2",100, NULL,1, &Task_Handle2); 
   xTaskCreate(Task_Transmission, "Task3",100, NULL,2, &Task_Handle3); 
   xTaskCreate(Task_Pulse_sensor, "Task4",100, NULL,1, &Task_Handle4);
-  Global_Queue=xQueueCreate(15, sizeof(package));
+  Global_Queue=xQueueCreate(10, sizeof(package));
   Global_Queue2=xQueueCreate(1, sizeof(bool));
   vTaskStartScheduler();
 }
